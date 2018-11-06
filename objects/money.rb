@@ -1,23 +1,31 @@
 # Initializes the winnings and losses on the players balance
 class Money
-  def initialize(balance, cps)
-    @balance = balance
-    @cps = cps
+  attr_reader :session, :spins
+
+  def initialize(session)
+    @session = session
+
+    session[:balance] ||= 500
   end
 
   def balance
-    @balance = gets.chomp.to_i
-  end
-
-  def cps
-    @cps = 1
+    session[:balance].to_i
   end
 
   def lose
-    @balance - @cps
+    session[:balance] -= 1
   end
 
   def win
-    @balance + (@cps * 2)
+    session[:balance] += 2
+  end
+
+  def result
+    result = Spins.new(self)
+
+    lose(1)
+    win(2)
+
+    result
   end
 end

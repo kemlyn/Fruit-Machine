@@ -2,16 +2,18 @@ require 'sinatra'
 require_relative 'objects/money.rb'
 require_relative 'objects/spins.rb'
 
+
 set :bind, '0.0.0.0'
 set :public_folder, 'public/images'
 
-get '/' do
-  @spin = Spins.new
-  @outcome = @spin.play(params[:option])
-  erb :index
-end
+use Rack::Session::Cookie, key:    'rack.session',
+                           path:   '/',
+                           secret: 'RANDOMSTRING'
 
-post '/' do
+get '/' do
+  @balance ||= Money.new(session)
+  @current = @balance.balance
+
   @spin = Spins.new
   @outcome = @spin.play(params[:option])
   erb :index

@@ -18,37 +18,42 @@
     </style>
   </head>
   <body>
-    <h1>Press the button to Spin!</h1>
-    <form action="/" method="post">
+    <h1>Press the button to Spin!</h1><br>
+    <form action="/" method="get">
       <button type="submit" class="btn btn-danger"><b>Spin</b></button>
-    </form>
+    </form><br>
     <div class="row">
       <div class="col-lg-4 col-md-4 col-xs-4 thumb">
-        <a class="thumbnail" name="spin1" id="spin1">
+        <a class="thumbnail" name="spin1">
           <img class="img-responsive" src="<%= @spin.spin1 %>.png" alt="<%= @spin %>">
-          <p><%= pp @spin.spin1.inspect %></p>
         </a>
+        <p><%= pp @spin.spin1.inspect %></p>
       </div>
       <div class="col-lg-4 col-md-4 col-xs-4 thumb">
         <a class="thumbnail" name="spin2">
           <img class="img-responsive" src="<%= @spin.spin2 %>.png" alt="<%= @spin %>">
-          <p><%= pp @spin.spin2.inspect %></p>
         </a>
+        <p><%= pp @spin.spin2.inspect %></p>
       </div>
       <div class="col-lg-4 col-md-4 col-xs-4 thumb">
         <a class="thumbnail" name="spin3">
           <img class="img-responsive" src="<%= @spin.spin3 %>.png" alt="<%= @spin %>">
-          <p><%= pp @spin.spin3.inspect %></p>
         </a>
+        <p><%= pp @spin.spin3.inspect %></p>
       </div>
-    </div>
-    <p>Your balance is currently £<%= @balance %></p>
+    </div><br><br>
     <div>
       <% if @outcome == :win %>
+      <% @current += 2 %>
       <p><b>You WIN!</b></p>
       <% else @outcome == :lose %>
+      <% @current -= 1 %>
       <p><b>Better luck next time!</b></p>
       <% end %>
+    </div>
+    <br>
+    <div>
+      <p>Your balance is currently £<%= @current %></p>
     </div>
   </body>
 </html>
