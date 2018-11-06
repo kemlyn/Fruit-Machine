@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  app:
+    build: .
+    command: ./run.sh
+    volumes:
+      - .:/app
+      - web_gems:/rubygems
+    environment:
+      GEM_HOME: /rubygems
+    ports:
+      - 9292:9292
+
+volumes:
+  web_gems:

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Fruit Machine</title>
+    <style type="text/css">
+      body {
+        background: #ccc;
+        font-family: Helvetica, Arial, sans-serif;
+      }
+
+      .machine {
+        background: #fff;
+        border: 2px solid black;
+        margin: 100px auto;
+        max-width: 600px;
+        position: relative;
+      }
+
+      .prizes {
+        margin: auto;
+        max-width: 600px;
+      }
+
+      .prizes table {
+        text-align: left;
+      }
+
+      .prize {
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 15px;
+        margin: 0 10%;
+        padding: 20px;
+        position: absolute;
+        text-align: center;
+        text-transform: uppercase;
+        top: 10%;
+        width: 70%;
+      }
+
+      .reel {
+        border: 1px solid #ccc;
+        float: left;
+        padding: 100px 0;
+        text-align: center;
+        width: 33%;
+      }
+
+      .controls {
+        bottom: -50px;
+        position: absolute;
+        width: 100%;
+      }
+
+      .controls a {
+        background: #0c0;
+        border-radius: 5px;
+        color: #fff;
+        display: inline-block;
+        padding: 10px 30px;
+        text-decoration: none;
+      }
+
+      .controls > div {
+        width: 50%;
+        float: left;
+      }
+
+      .controls .balance span {
+        display: inline-block;
+        padding: 10px 0;
+      }
+
+      .controls .buttons {
+        text-align: right;
+      }
+
+      .clear { clear: both; }
+    </style>
+  </head>
+  <body>
+    <div class="machine">
+      <% if @result.prize %>
+      <p class="prize">You've won <%= @result.prize %> credits!</p>
+      <% end %>
+      <div class="reels">
+        <div class="reel" id="reel-one">
+          <%= @result[0][:name] %>
+        </div>
+        <div class="reel" id="reel-two">
+          <%= @result[1][:name] %>
+        </div>
+        <div class="reel" id="reel-three">
+          <%= @result[2][:name] %>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="controls">
+        <div class="balance">
+          <span class="currency">&euro;</span>
+          <span class="value"><%= @game.balance %></span>
+        </div>
+        <div class="buttons">
+          <a href="/">Spin Again!</a>
+        </div>
+      </div>
+    </div>
+    <div class="prizes">
+      <h2>Prize Table</h2>
+      <p>Prizes are on along the winline from left to right.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Symbols</th>
+            <th>Prize</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @game.prize_table.each do |prize| %>
+          <tr>
+            <td><%= prize[:label] %></td>
+            <td><%= prize[:value] %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
