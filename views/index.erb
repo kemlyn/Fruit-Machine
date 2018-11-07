@@ -25,35 +25,33 @@
     <div class="row">
       <div class="col-lg-4 col-md-4 col-xs-4 thumb">
         <a class="thumbnail" name="spin1">
-          <img class="img-responsive" src="<%= @spin.spin1 %>.png" alt="<%= @spin %>">
+          <img class="img-responsive" src="<%= @result.spin1 %>.png" alt="<%= @result %>">
         </a>
-        <p><%= pp @spin.spin1.inspect %></p>
+        <p><%= @result.spin1.inspect %></p>
       </div>
       <div class="col-lg-4 col-md-4 col-xs-4 thumb">
         <a class="thumbnail" name="spin2">
-          <img class="img-responsive" src="<%= @spin.spin2 %>.png" alt="<%= @spin %>">
+          <img class="img-responsive" src="<%= @result.spin2 %>.png" alt="<%= @result %>">
         </a>
-        <p><%= pp @spin.spin2.inspect %></p>
+        <p><%= @result.spin2.inspect %></p>
       </div>
       <div class="col-lg-4 col-md-4 col-xs-4 thumb">
         <a class="thumbnail" name="spin3">
-          <img class="img-responsive" src="<%= @spin.spin3 %>.png" alt="<%= @spin %>">
+          <img class="img-responsive" src="<%= @result.spin3 %>.png" alt="<%= @result %>">
         </a>
-        <p><%= pp @spin.spin3.inspect %></p>
+        <p><%= @result.spin3.inspect %></p>
       </div>
     </div><br><br>
     <div>
-      <% if @outcome == :win %>
-      <% @current += 2 %>
+      <% if @machine == :win %>
       <p><b>You WIN!</b></p>
-      <% else @outcome == :lose %>
-      <% @current -= 1 %>
+      <% else @machine == :lose %>
       <p><b>Better luck next time!</b></p>
       <% end %>
     </div>
     <br>
-    <div>
-      <p>Your balance is currently £<%= @current %></p>
+    <div class="balance">
+      <p>Your balance is currently £<%= @machine.balance %></p>
     </div>
   </body>
 </html>
