@@ -2,7 +2,7 @@
 incomplete example of a single row fruit machine
 
 # Running
-The application can be executed in your terminal by running `gem install shotgun` and then running:
+The application can be executed in your terminal by running:
 
 `shotgun fruits.rb`
 
