@@ -14,7 +14,7 @@ class Game
       @spin3 ||= OPTIONS[rand(OPTIONS.length)]
     end
 
-    def outcome(_spin)
+    def outcome
       if [spin1, spin2, spin3].uniq.count == 1
         :win
       else
@@ -29,23 +29,19 @@ class Game
     def initialize(session)
       @session = session
 
-      session[:balance] ||= 500
+      session['balance'] ||= 500
     end
 
-    def lose(cash)
-      return unless cash
-
-      session[:balance] -= cash
+    def win
+      session['balance'] += 10
     end
 
-    def win(cash)
-      return unless cash
-
-      session[:balance] += cash
+    def lose
+      session['balance'] -= 1
     end
 
     def balance
-      session[:balance]
+      session['balance']
     end
   end
 
@@ -56,16 +52,16 @@ class Game
     @money = Money.new(session)
   end
 
-  def play!
+  def play
     result = Spins.new
 
-    @money.lose(1)
-    @money.win(2)
+    money.lose
+    money.win if result.outcome == :win
 
     result
   end
 
   def balance
-    @money.balance
+    money.balance
   end
 end

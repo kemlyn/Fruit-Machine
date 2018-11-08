@@ -25,33 +25,30 @@
     <div class="row">
       <div class="col-lg-4 col-md-4 col-xs-4 thumb">
         <a class="thumbnail" name="spin1">
-          <img class="img-responsive" src="<%= @result.spin1 %>.png" alt="<%= @result %>">
+          <img class="img-responsive" src="<%= @result.spin1 %>.png">
         </a>
-        <p><%= @result.spin1.inspect %></p>
       </div>
       <div class="col-lg-4 col-md-4 col-xs-4 thumb">
         <a class="thumbnail" name="spin2">
-          <img class="img-responsive" src="<%= @result.spin2 %>.png" alt="<%= @result %>">
+          <img class="img-responsive" src="<%= @result.spin2 %>.png">
         </a>
-        <p><%= @result.spin2.inspect %></p>
       </div>
       <div class="col-lg-4 col-md-4 col-xs-4 thumb">
         <a class="thumbnail" name="spin3">
-          <img class="img-responsive" src="<%= @result.spin3 %>.png" alt="<%= @result %>">
+          <img class="img-responsive" src="<%= @result.spin3 %>.png">
         </a>
-        <p><%= @result.spin3.inspect %></p>
       </div>
     </div><br><br>
     <div>
-      <% if @machine == :win %>
+      <% if @result.outcome == :win %>
       <p><b>You WIN!</b></p>
-      <% else @machine == :lose %>
+      <% else @result.outcome == :lose %>
       <p><b>Better luck next time!</b></p>
       <% end %>
     </div>
     <br>
     <div class="balance">
-      <p>Your balance is currently £<%= @machine.balance %></p>
+      <span>Your balance is currently £<%= @machine.balance %></span>
     </div>
   </body>
 </html>
