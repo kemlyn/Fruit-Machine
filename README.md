@@ -16,10 +16,10 @@ DONE
 Single row, three reel fruit machine set on random
 Session based balance
 Images on reels
-
-TODO
-Dynamic view so the game can support more reels
-Weighted prizes
 Balance adjustments on lose and win
 Display Win or Lose depending on the output
+
+TODO
+Game can support more reels
+Weighted prizes
 Different symbols get different prizes
